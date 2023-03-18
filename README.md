@@ -9,14 +9,8 @@ sudo ansible-playbook -i inventory lamp.yml --ssh-common-args='-o StrictHostKeyC
 
 ### Screenshots:
 
-```
-![Screenshot1](screenshots/Screenshot from 2023-03-17 20-49-58.png)
-```
+<img src="screenshots/Screenshot from 2023-03-17 20-49-58.png">
 
-```
-![Screenshot2](screenshots/Screenshot from 2023-03-17 20-50-15.png)
-```
+<img src="screenshots/Screenshot from 2023-03-17 20-50-15.png">
 
-```
-![Screenshot3](screenshots/Screenshot from 2023-03-17 20-50-36.png)
-```
+<img src="screenshots/Screenshot from 2023-03-17 20-50-36.png">
