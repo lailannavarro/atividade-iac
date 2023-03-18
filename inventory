@@ -1,0 +1,8 @@
+[servers_01]
+server01_jenkins ansible_ssh_host=3.85.16.137 ansible_ssh_user=ubuntu ansible_ssh_private_key_file=./ssh/keyPair_01.pem
+
+[servers_02]
+server02_rundeck ansible_ssh_host=52.86.55.176 ansible_ssh_user=ubuntu ansible_ssh_private_key_file=./ssh/keyPair_01.pem
+
+[servers_03]
+server03_lamp ansible_ssh_host=54.160.107.185 ansible_ssh_user=ubuntu ansible_ssh_private_key_file=./ssh/keyPair_01.pem

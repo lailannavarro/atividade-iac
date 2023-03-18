@@ -1,0 +1,31 @@
+---
+- name: Instalacao do Jenkins
+  hosts: servers_01
+  become: true
+
+  tasks:
+    - name: Garantir importacao da chave
+      apt_key:
+        url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+        state: present
+
+    - name: Adicionar repositorio
+      apt_repository:
+        repo: deb https://pkg.jenkins.io/debian-stable binary/
+        state: present
+
+    - name: Instalacao do runtime Java
+      ansible.builtin.include_tasks:
+        file: jre.yml
+
+    - name: Instalacao do pacote
+      apt:
+        name: jenkins
+        state: present
+        update_cache: yes
+
+    - name: Start e enable do servico
+      service:
+        name: jenkins
+        enabled: true
+        state: started

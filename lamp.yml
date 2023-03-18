@@ -1,0 +1,29 @@
+---
+- name: Instalacao da LAMP stack
+  hosts: servers_03
+  become: true
+
+  tasks:
+    - name: Instalacao dos pacotes
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      with_items:
+        - mysql-server
+        - apache2
+        - php
+        - php-cli
+        - php-common
+        - php-gd
+        - php-mysqlnd
+        - php-pdo
+
+    - name: Start e enable dos servicos
+      service:
+        name: "{{ item }}"
+        enabled: true
+        state: started
+      with_items:
+      - mysql
+      - apache2

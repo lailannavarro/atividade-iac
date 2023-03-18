@@ -1,0 +1,34 @@
+---
+- name: Instalacao do Rundeck
+  hosts: servers_02
+  become: true
+
+  tasks:
+    - name: Garantir importacao da chave
+      apt_key:
+        url: https://packages.rundeck.com/pagerduty/rundeck/gpgkey
+        state: present
+
+    - name: Adicionar repositorio
+      apt_repository:
+        repo: "{{ item }}"
+        state: present
+      with_items:
+        - deb https://packages.rundeck.com/pagerduty/rundeck/any/ any main
+        - deb-src https://packages.rundeck.com/pagerduty/rundeck/any/ any main
+
+    - name: Instalacao do runtime Java
+      ansible.builtin.include_tasks:
+        file: jre.yml
+
+    - name: Instalacao do pacote
+      apt:
+        name: rundeck
+        state: present
+        update_cache: yes
+
+    - name: Start e enable do servico
+      service:
+        name: rundeckd
+        enabled: true
+        state: started
